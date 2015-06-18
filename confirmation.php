@@ -1,5 +1,9 @@
 <?php
 
+require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; //read mailer
+require 'config_sample.php'; // read host, username and password
+
+//// webpay start
 require 'vendor/autoload.php';
 use WebPay\WebPay;
 
@@ -11,18 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'card' => $_POST['webpay-token'],
   ));
 }
+//// webpay end
 
-require 'PHPMailerAutoload.php';
-
+//// mailer start
 $mail = new PHPMailer;
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+//$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'user@example.com';                 // SMTP username
-$mail->Password = 'secret';                           // SMTP password
+//$mail->Username = 'user@example.com';                 // SMTP username
+//$mail->Password = 'secret';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -48,6 +51,7 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
+//// mailer end
 ?>
 
 <!doctype html>
