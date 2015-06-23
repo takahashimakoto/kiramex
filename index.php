@@ -159,57 +159,46 @@ while(true) {
         <!-- /.row -->
 
         <!-- Page Features -->
-        
                     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<?php
-foreach($items as $item ) { ?>
         <div class="row text-center">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="onigiri.jpg" alt="">
-                    <div class="caption">
-                    <h3><?php echo $item['item_name']; ?></h3>
-
-                        <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
-                        <p>米：
-                         <select name="rice">
-                    <?php foreach ($rices as $rice ) { ?>    
-                        <option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
-                    <?php } ?>
-                        </select></p>
-                        <p>のり：
-                         <select name="nori">
-                    <?php foreach($noris as $nori ){ ?>
-                        <option value="<?php echo $nori['nori_id']; ?>" > <?php echo $nori['nori_name']; ?> </option> 
-                    <?php } ?> 
-                        </select></p>
-                      <p>個数：
-                        <select name="num">
-                    <?php for($i = 1; $i < 6; $i++){ ?>
-                        <option value= "<?php echo $i; ?>" > 
-                        <?php echo $i ; ?>
-                        </option>
-
-                    <?php } ?>
-                        </select> 
-                        個</p>
-                        <p>
-                        <input type ="submit" class="btn btn-primary" value = "カートに入れる"/>
-                        <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
-                        <!--<a href="#" class="btn btn-default">More Info</a>-->
-                        </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-    
-<?php } ?>
-   
+			<?php foreach($items as $item ) { ?>
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="onigiri.jpg" alt="">
+						<div class="caption">
+							<h3><?php echo $item['item_name']; ?></h3>
+							<form action="index.php" method="post">
+							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
+								<p>米：<select name="rice">
+									<?php foreach ($rices as $rice ) { ?>    
+										<option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
+									<?php } ?>
+								</select></p>
+								<p>のり：<select name="nori">
+									<?php foreach($noris as $nori ){ ?>
+										<option value="<?php echo $nori['nori_id']; ?>" > <?php echo $nori['nori_name']; ?> </option> 
+									<?php } ?> 
+								</select></p>
+								<p>個数：<select name="num">
+									<?php for($i = 1; $i < 6; $i++){ ?>
+										<option value= "<?php echo $i; ?>" > <?php echo $i ; ?> </option>
+									<?php } ?>
+								</select>個</p>
+								<p>
+									<input type ="submit" class="btn btn-primary" value = "カートに入れる"/>
+									<!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
+									<!--<a href="#" class="btn btn-default">More Info</a>-->
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
         <!-- /.row -->
 
         <hr>
+
         <!-- Footer -->
         <footer>
             <div class="row">
