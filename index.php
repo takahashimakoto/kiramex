@@ -113,7 +113,7 @@ while(true){
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -122,15 +122,13 @@ while(true){
                 <a class="navbar-brand" href="#">MUSUBI</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggli5ng -->
-            <div class="collapse navbar-collapse" id="">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="cart.php">カートを見る</a>
                     </li>
                     <li>
-                        <a href="#">購入する</abs-example-navbar-collapse-1
-bs-example-navbar-collapse-1
->
+                        <a href="purchase.php">購入する</a>
                     </li>
 <!--                <li>
                         <a href="#">Contact</a>
@@ -151,8 +149,7 @@ bs-example-navbar-collapse-1
         <header class="jumbotron hero-spacer">
             <h1>ほうたに</h1>
             <p>お米と具材にこだわった、手作りおにぎりのお店です。</p>
-            <p><a class="btn btn-primary btn-large">Call to action!</a>
-            </p>
+            <p><a class="btn btn-primary btn-large">Call to action!</a></p>
         </header>
 
         <hr>
@@ -173,7 +170,7 @@ foreach($items as $item ) { ?>
         <div class="row text-center">
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="/ccon15/onigiri.jpg" alt="">
+                    <img src="onigiri.jpg" alt="">
                     <div class="caption">
                     <h3><?php echo $item['item_name']; ?></h3>
 
@@ -202,7 +199,7 @@ foreach($items as $item ) { ?>
                         </select> 
                         個</p>
                         <p>
-                        <input type ="submit" value = "カートに入れる"/>
+                        <input type ="submit" class="btn btn-primary" value = "カートに入れる"/>
                         <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
                         <!--<a href="#" class="btn btn-default">More Info</a>-->
                         </p>
@@ -210,7 +207,6 @@ foreach($items as $item ) { ?>
                     </div>
                 </div>
             </div>
-        </div>
 
     
 <?php } ?>
