@@ -8,9 +8,6 @@
 <body>
 <?php
 
-require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; //read mailer
-require 'config_sample.php'; // read host, username and password
-
 //// webpay start
 require 'vendor/autoload.php';
 use WebPay\WebPay;
@@ -26,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //// webpay end
 
 //// mailer start
+require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; //read mailer
+require 'config_sample.php'; // read host, username and password
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -37,20 +36,22 @@ $mail->SMTPAuth = true;                               // Enable SMTP authenticat
 //$mail->Port = 587;                                    // TCP port to connect to
 
 $mail->From = 'musubi151515@gmail.com';
-$mail->FromName = 'from-musubi';
-$mail->addAddress('musubi151515@gmail.com', 'Joe User');     // Add a recipient
+$mail->FromName = 'musubi-staff';
+$mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
-$mail->addReplyTo('musubi151515@gmail.com', 'Information');
+//$mail->addReplyTo('musubi151515@gmail.com', 'Information');
 //$mail->addCC('cc@example.com');
 //$mail->addBCC('bcc@example.com');
 
 //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);                                  // Set email format to HTML
-
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$mail->isHTML(false);                                  // Set email format to HTML
+mb_language("ja");
+mb_internal_encoding("UTF-8");
+$mailbody = file_get_contents('completion_mail.txt');
+$mail->Subject = mb_encode_mimeheader('[MUSUBI]ご注文いただきありがとうございます');
+$mail->Body    = $mailbody;
+//$mail->AltBody = $mailbody;
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
