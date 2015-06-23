@@ -67,6 +67,8 @@ if(!$mail->send()) {
     <li><a href="purchase.php">【←】購入画面に戻る</a></li>
   </ul>
 
+  <p>この辺にいろいろ確認情報が出る予定</p>
+
   <form action="completion.php" method="post">
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-lang="ja"></script>
   </form>

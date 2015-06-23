@@ -8,8 +8,8 @@
 <body>
 <h1>購入画面</h1>
 <ul>
-    <li><a href="index.php">【←】カートの中身に戻る</a></li>
-    <li><a href="purchase.php">【→】確認画面に進む</a></li>
+    <li><a href="cart.php">【←】カートの中身に戻る</a></li>
+    <li><a href="confirmation.php">【→】確認画面に進む</a></li>
 </ul>
 
 
