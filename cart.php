@@ -1,25 +1,27 @@
 <html>
+
+<head>
+	<meta content="text/html" charset="UTF-8">
+</head>
+
 <body>
-            <li>
-              <a href="index.php">【←】商品ページに戻る</a>
-              <a href="kiramex.0618.tsukamoto.html">【→】購入画面に進む</a>
-            </li>
+	<h1>カートの中身</h1>
+	<ul>
+		<li><a href="index.php">【←】商品ページに戻る</a></li>
+		<li><a href="purchase.php">【→】購入画面に進む</a></li>
+	</ul>
 
+	<br>
 
-			<?php
+	<?php
 
-			session_start();
+	session_start();
 
-			echo "<p>カートの中身<p><br>";
+	echo "<pre>";
+	print_r($_SESSION["order"]);
+	echo "</pre>";
 
-			echo "<pre>";
-			print_r($_SESSION["order"]);
-			echo "</pre>";
-			
-			?>
-
-
-
-
+	?>
 </body>
+
 </html>
