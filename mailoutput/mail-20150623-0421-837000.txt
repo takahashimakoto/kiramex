@@ -1,0 +1,12 @@
+To: musubi151515@gmail.com
+Subject: test
+Date: Tue, 23 Jun 2015 06:21:51 +0200
+From: musubimaru <musubi151515@gmail.com>
+Message-ID: <6b5347fca171af87f184addcb2775902@NP-0030>
+X-Priority: 3
+X-Mailer: PHPMailer 5.2.10 (https://github.com/PHPMailer/PHPMailer/)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-2022-jp
+
+testtesttest
+
