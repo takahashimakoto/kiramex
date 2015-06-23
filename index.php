@@ -27,7 +27,7 @@ $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
 
-
+exit();
 //ここでおにぎりのデータベース情報をデータベースから取る
 $result1=mysql_db_query("musubi","SELECT * from items");
 
@@ -58,6 +58,7 @@ while(true){
     
     }
 }
+
 //ここからのりのデータベース情報をデータベースから取る
 $result3=mysql_db_query("","SELECT * from noris");
 
