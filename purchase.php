@@ -6,6 +6,13 @@
 </head>
 
 <body>
+<h1>購入画面</h1>
+<ul>
+    <li><a href="index.php">【←】カートの中身に戻る</a></li>
+    <li><a href="purchase.php">【→】確認画面に進む</a></li>
+</ul>
+
+
 <script type="text/javascript" language="javascript" src="/B1D671CF-E532-4481-99AA-19F420D90332/netdefender/hui/ndhui.js?0=0&amp;0=0&amp;0=0"></script>
 
   <td valign="top" class="center" id="center3">
@@ -95,21 +102,16 @@ return false;
 //-->
 </script>
 
-
-
-
 <style>
 ul.option_style {
   list-style: none;
   padding:0;
   margin:0;
 }
-
 ul.option_style li { 
   padding-left: 1em; 
   text-indent: -0.9em;
 }
-
 ul.option_style li:before {
   content: "└ ";
 }
@@ -124,6 +126,7 @@ td.border-none-v {
   border-bottom:none !important;;
 }
 </style>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script language="javascript">
 <!--
@@ -233,6 +236,9 @@ function toggleCheckAddr(flag) {
 <script src="https://cart2.shopserve.jp/js/localization/messages_ja.js" charset="UTF-8"></script>
 <script src="https://cart2.shopserve.jp/js/placeholder.js"></script>
 <link rel="stylesheet" href="https://cart2.shopserve.jp/css/placeholder.css" type="text/css">
+
+
+
 <table border="0" cellpadding="0" cellspacing="0">
   <tbody><tr>
     <!-- 中央コンテンツ -->

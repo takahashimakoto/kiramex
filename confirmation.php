@@ -1,3 +1,11 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta content="text/html" charset="UTF-8">
+</head>
+
+<body>
 <?php
 
 require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; //read mailer
@@ -54,11 +62,14 @@ if(!$mail->send()) {
 //// mailer end
 ?>
 
-<!doctype html>
-<html>
-<body>
-<form action="completion.php" method="post">
-  <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-lang="ja"></script>
-</form>
+  <h1>確認画面</h1>
+  <ul>
+    <li><a href="purchase.php">【←】購入画面に戻る</a></li>
+  </ul>
+
+  <form action="completion.php" method="post">
+    <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-lang="ja"></script>
+  </form>
+
 </body>
 </html>
