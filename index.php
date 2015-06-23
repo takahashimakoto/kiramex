@@ -10,10 +10,10 @@ if(!isset($_SESSION["order"])){
 if(isset($_SESSION["order"])){
 //  $_SESSION["order"][] = @$_GET[item]." ".@$_GET[rice]." ".@$_GET[nori]." ".@$_GET[num]."個";
           $_SESSION["order"][] = array(
-                'item' => @$_POST['item'],
-                'rice' => @$_POST['rice'],
-                'nori' => @$_POST['nori'],
-                'num' => @$_POST['num']
+                '具' => @$_POST['item'],
+                '米' => @$_POST['rice'],
+                '海苔' => @$_POST['nori'],
+                '数' => @$_POST['num']
         );
 }
 /*
@@ -22,7 +22,7 @@ print_r($_SESSION["order"]);
 echo "</pre>";
 */
 
-$connect = mysql_connect("localhost","root"," ");
+$connect = mysql_connect("localhost","root","");
 $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
@@ -30,21 +30,24 @@ mysql_query("SET NAMES utf8",$connect);
 
 //ここでおにぎりのデータベース情報をデータベースから取る
 $result1=mysql_db_query("musubi","SELECT * from items");
-
+$i = 1;
+var_dump($result1);
 while(true){
       $kekka1 = mysql_fetch_assoc($result1);
       if($kekka1 == null) {
         break;
       }else{
         $i++;
-           // echo"<br>";
+        print_r($kekka1);
+           echo"<br>";
             $items[] = $kekka1;
           //  echo"<br>";
     
        }
 } 
+
 //ここからお米のデータベース情報をデータベースから取る
-$result2=mysql_db_query("","SELECT * from rices");
+$result2=mysql_db_query("musubi","SELECT * from rices");
 
 while(true){
       $kekka2 = mysql_fetch_assoc($result2);
@@ -60,7 +63,7 @@ while(true){
 }
 
 //ここからのりのデータベース情報をデータベースから取る
-$result3=mysql_db_query("","SELECT * from noris");
+$result3=mysql_db_query("musubi","SELECT * from noris");
 
 while(true){
       $kekka3 = mysql_fetch_assoc($result3);
@@ -172,27 +175,26 @@ foreach($items as $item ) { ?>
                 <div class="thumbnail">
                     <img src="/ccon15/onigiri.jpg" alt="">
                     <div class="caption">
-                        <h3>梅</h3>
+                    <h3><?php echo $item['item_name']; ?></h3>
 
                         <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="<?php $item ?>">
+                        <input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
                         <p>米：
+                         <select name="rice">
                     <?php foreach ($rices as $rice ) { ?>    
-                        <select name="rice">
-                        <option value=<?php echo $rice['rice_id']; ?> > <?php echo $rice['rice_name']; ?> </option>
-                        </select></p>
+                        <option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
                     <?php } ?>
-                    
+                        </select></p>
                         <p>のり：
                          <select name="nori">
                     <?php foreach($noris as $nori ){ ?>
-                        <option value=<?php echo $nori['nori_id']; ?> > <?php echo $nori['nori_name']; ?> </option> 
+                        <option value="<?php echo $nori['nori_id']; ?>" > <?php echo $nori['nori_name']; ?> </option> 
                     <?php } ?> 
                         </select></p>
                       <p>個数：
                         <select name="num">
                     <?php for($i = 1; $i < 6; $i++){ ?>
-                        <option value= <?php echo $i; ?> > 
+                        <option value= "<?php echo $i; ?>" > 
                         <?php echo $i ; ?>
                         </option>
 
