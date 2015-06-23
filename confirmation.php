@@ -48,17 +48,19 @@ $mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipi
 $mail->isHTML(false);                                  // Set email format to HTML
 mb_language("ja");
 mb_internal_encoding("UTF-8");
-$mailbody = file_get_contents('completion_mail.txt');
+$mailbody = file_get_contents('completion_mail.php');
 $mail->Subject = mb_encode_mimeheader('[MUSUBI]ご注文いただきありがとうございます');
 $mail->Body    = $mailbody;
 //$mail->AltBody = $mailbody;
 
+/*
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
     echo 'Message has been sent';
 }
+*/
 //// mailer end
 ?>
 
@@ -70,7 +72,15 @@ if(!$mail->send()) {
   <p>この辺にいろいろ確認情報が出る予定</p>
 
   <form action="completion.php" method="post">
-    <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-lang="ja"></script>
+    <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
+    <?php
+    if(!$mail->send()) {
+//      echo 'Message could not be sent.';
+//      echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+//        echo 'Message has been sent';
+    }
+    ?>
   </form>
 
 </body>
