@@ -27,7 +27,7 @@ $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
 
-exit();
+
 //ここでおにぎりのデータベース情報をデータベースから取る
 $result1=mysql_db_query("musubi","SELECT * from items");
 
@@ -166,7 +166,7 @@ bs-example-navbar-collapse-1
         
                     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
 <?php
-foreach($items as $item ) ?>
+foreach($items as $item ) { ?>
         <div class="row text-center">
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
@@ -185,7 +185,7 @@ foreach($items as $item ) ?>
                     
                         <p>のり：
                          <select name="nori">
-                    foreach($noris as $nori ){ ?>
+                    <?php foreach($noris as $nori ){ ?>
                         <option value=<?php echo $nori['nori_id']; ?> > <?php echo $nori['nori_name']; ?> </option> 
                     <?php } ?> 
                         </select></p>
