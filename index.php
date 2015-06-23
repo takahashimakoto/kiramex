@@ -3,20 +3,17 @@
 <!---->
 
 <?php
-
 session_start();
-
 if(!isset($_SESSION["order"])){
     $_SESSION["order"] = array();
 }
-
 if(isset($_SESSION["order"])){
 //  $_SESSION["order"][] = @$_GET[item]." ".@$_GET[rice]." ".@$_GET[nori]." ".@$_GET[num]."個";
-    $_SESSION["order"][] = array(
-        'item' => @$_POST['item'],
-        'rice' => @$_POST['rice'],
-        'nori' => @$_POST['nori'],
-        'num' => @$_POST['num'],
+          $_SESSION["order"][] = array(
+                'item' => @$_POST['item'],
+                'rice' => @$_POST['rice'],
+                'nori' => @$_POST['nori'],
+                'num' => @$_POST['num']
         );
 }
 /*
@@ -24,6 +21,59 @@ echo "<pre>";
 print_r($_SESSION["order"]);
 echo "</pre>";
 */
+
+$connect = mysql_connect("localhost","root"," ");
+$db = "musubi";
+//SQLをUTF8形式で書くよ、という意味
+mysql_query("SET NAMES utf8",$connect);
+
+
+//ここでおにぎりのデータベース情報をデータベースから取る
+$result1=mysql_db_query("musubi","SELECT * from items");
+
+while(true){
+      $kekka1 = mysql_fetch_assoc($result1);
+      if($kekka1 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $items[] = $kekka1;
+          //  echo"<br>";
+    
+       }
+} 
+//ここからお米のデータベース情報をデータベースから取る
+$result2=mysql_db_query("","SELECT * from rices");
+
+while(true){
+      $kekka2 = mysql_fetch_assoc($result2);
+      if($kekka2 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $rices[] = $kekka2;
+          //  echo"<br>";
+    
+    }
+}
+//ここからのりのデータベース情報をデータベースから取る
+$result3=mysql_db_query("","SELECT * from noris");
+
+while(true){
+      $kekka3 = mysql_fetch_assoc($result3);
+      if($kekka3 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $noris[] = $kekka3;
+          //  echo"<br>";
+    
+    }
+}
+
 ?>
 
 
@@ -59,7 +109,7 @@ echo "</pre>";
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -68,13 +118,15 @@ echo "</pre>";
                 <a class="navbar-brand" href="#">MUSUBI</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggli5ng -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="cart.php">カートを見る</a>
                     </li>
                     <li>
-                        <a href="#">購入する</a>
+                        <a href="#">購入する</abs-example-navbar-collapse-1
+bs-example-navbar-collapse-1
+>
                     </li>
 <!--                <li>
                         <a href="#">Contact</a>
@@ -93,7 +145,7 @@ echo "</pre>";
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>MUSUBI</h1>
+            <h1>ほうたに</h1>
             <p>お米と具材にこだわった、手作りおにぎりのお店です。</p>
             <p><a class="btn btn-primary btn-large">Call to action!</a>
             </p>
@@ -110,87 +162,44 @@ echo "</pre>";
         <!-- /.row -->
 
         <!-- Page Features -->
+        
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<?php
+foreach($items as $item ) ?>
         <div class="row text-center">
-
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="/ccon15/onigiri.jpg" alt="">
                     <div class="caption">
                         <h3>梅</h3>
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+
                         <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="梅">
-						<p>米：
-						<select name="rice">
-						<option value="白米">白米</option>
-						<option value="玄米">玄米</option>
-						<option value="五穀米">五穀米</option>
-						<option value="タイ米">タイ米</option>
-						</select></p>
-
-						<p>のり：
-						<select name="nori">
-						<option value="焼きのり">焼きのり</option>
-						<option value="味付け海苔">味付けのり</option>
-						<option value="韓国のり">韓国のり</option>
-						<option value="すんごいのり">すんごいのり</option>
-						</select></p>
-
-
-						<p>個数：
-						<select name="num">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						</select>個</p>    
-
-                        <p>
-                        <input type ="submit" value = "カートに入れる">
-                        <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
-                        <!--<a href="#" class="btn btn-default">More Info</a>-->
-                        </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="/ccon15/onigiri.jpg" alt="">
-                    <div class="caption">
-                        <h3>明太子</h3>
-                        <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="明太子">
+                        <input type="hidden" name="item" value="<?php $item ?>">
                         <p>米：
+                    <?php foreach ($rices as $rice ) { ?>    
                         <select name="rice">
-                        <option value="白米">白米</option>
-                        <option value="玄米">玄米</option>
-                        <option value="五穀米">五穀米</option>
-                        <option value="タイ米">タイ米</option>
+                        <option value=<?php echo $rice['rice_id']; ?> > <?php echo $rice['rice_name']; ?> </option>
                         </select></p>
-
+                    <?php } ?>
+                    
                         <p>のり：
-                        <select name="nori">
-                        <option value="焼きのり">焼きのり</option>
-                        <option value="味付け海苔">味付けのり</option>
-                        <option value="韓国のり">韓国のり</option>
-                        <option value="すんごいのり">すんごいのり</option>
+                         <select name="nori">
+                    foreach($noris as $nori ){ ?>
+                        <option value=<?php echo $nori['nori_id']; ?> > <?php echo $nori['nori_name']; ?> </option> 
+                    <?php } ?> 
                         </select></p>
-
-
-                        <p>個数：
+                      <p>個数：
                         <select name="num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>個</p>    
+                    <?php for($i = 1; $i < 6; $i++){ ?>
+                        <option value= <?php echo $i; ?> > 
+                        <?php echo $i ; ?>
+                        </option>
 
+                    <?php } ?>
+                        </select> 
+                        個</p>
                         <p>
-                        <input type ="submit" value = "カートに入れる">
+                        <input type ="submit" value = "カートに入れる"/>
                         <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
                         <!--<a href="#" class="btn btn-default">More Info</a>-->
                         </p>
@@ -198,98 +207,14 @@ echo "</pre>";
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="/ccon15/onigiri.jpg" alt="">
-                    <div class="caption">
-                        <h3>おかか</h3>
-                        <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="おかか">
-                        <p>米：
-                        <select name="rice">
-                        <option value="白米">白米</option>
-                        <option value="玄米">玄米</option>
-                        <option value="五穀米">五穀米</option>
-                        <option value="タイ米">タイ米</option>
-                        </select></p>
-
-                        <p>のり：
-                        <select name="nori">
-                        <option value="焼きのり">焼きのり</option>
-                        <option value="味付け海苔">味付けのり</option>
-                        <option value="韓国のり">韓国のり</option>
-                        <option value="すんごいのり">すんごいのり</option>
-                        </select></p>
-
-
-                        <p>個数：
-                        <select name="num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>個</p>    
-
-                        <p>
-                        <input type ="submit" value = "カートに入れる">
-                        <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
-                        <!--<a href="#" class="btn btn-default">More Info</a>-->
-                        </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="/ccon15/onigiri.jpg" alt="">
-                    <div class="caption">
-                        <h3>シーチキン</h3>
-                        <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="シーチキン">
-                        <p>米：
-                        <select name="rice">
-                        <option value="白米">白米</option>
-                        <option value="玄米">玄米</option>
-                        <option value="五穀米">五穀米</option>
-                        <option value="タイ米">タイ米</option>
-                        </select></p>
-
-                        <p>のり：
-                        <select name="nori">
-                        <option value="焼きのり">焼きのり</option>
-                        <option value="味付け海苔">味付けのり</option>
-                        <option value="韓国のり">韓国のり</option>
-                        <option value="すんごいのり">すんごいのり</option>
-                        </select></p>
-
-
-                        <p>個数：
-                        <select name="num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>個</p>    
-
-                        <p>
-                        <input type ="submit" value = "カートに入れる">
-                        <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
-                        <!--<a href="#" class="btn btn-default">More Info</a>-->
-                        </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+    
+<?php } ?>
+   
         <!-- /.row -->
 
         <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">
