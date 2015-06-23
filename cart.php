@@ -1,7 +1,8 @@
 <html>
 <body>
             <li>
-              <a href="index.php">もどる</a>
+              <a href="index.php">【←】商品ページに戻る</a>
+              <a href="kiramex.0618.tsukamoto.html">【→】購入画面に進む</a>
             </li>
 
 
