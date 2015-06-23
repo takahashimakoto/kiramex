@@ -86,7 +86,7 @@ while(true){
 				echo $rices[$kome]['rice_name']."<br>";
 				$nori =  $orders['海苔'];
 				echo $noris[$nori]['nori_name']."<br>";
-
+				echo $orders['数']."個";
 
 			}
 			echo "</pre>";
