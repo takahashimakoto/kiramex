@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<!---->
-
 <?php
 session_start();
-if(!isset($_SESSION["order"])){
+if(!isset($_SESSION["order"])) {
     $_SESSION["order"] = array();
 }
-if(isset($_SESSION["order"])){
+if(isset($_SESSION["order"])) {
 //  $_SESSION["order"][] = @$_GET[item]." ".@$_GET[rice]." ".@$_GET[nori]." ".@$_GET[num]."個";
-          $_SESSION["order"][] = array(
-                '具' => @$_POST['item'],
-                '米' => @$_POST['rice'],
-                '海苔' => @$_POST['nori'],
-                '数' => @$_POST['num']
+        $_SESSION["order"][] = array(
+            '具' => @$_POST['item'],
+            '米' => @$_POST['rice'],
+            '海苔' => @$_POST['nori'],
+            '数' => @$_POST['num']
         );
 }
 /*
@@ -29,57 +25,57 @@ mysql_query("SET NAMES utf8",$connect);
 
 
 //ここでおにぎりのデータベース情報をデータベースから取る
-$result1=mysql_db_query("musubi","SELECT * from items");
+$result1 = mysql_db_query("musubi","SELECT * from items");
 $i = 1;
 var_dump($result1);
-while(true){
+while(true) {
       $kekka1 = mysql_fetch_assoc($result1);
       if($kekka1 == null) {
         break;
-      }else{
+      } else {
         $i++;
         print_r($kekka1);
            echo"<br>";
             $items[] = $kekka1;
           //  echo"<br>";
-    
        }
 } 
 
 //ここからお米のデータベース情報をデータベースから取る
-$result2=mysql_db_query("musubi","SELECT * from rices");
+$result2 = mysql_db_query("musubi","SELECT * from rices");
 
-while(true){
+while(true) {
       $kekka2 = mysql_fetch_assoc($result2);
       if($kekka2 == null) {
         break;
-      }else{
+      } else {
         $i++;
            // echo"<br>";
             $rices[] = $kekka2;
           //  echo"<br>";
-    
     }
 }
 
 //ここからのりのデータベース情報をデータベースから取る
-$result3=mysql_db_query("musubi","SELECT * from noris");
+$result3 = mysql_db_query("musubi","SELECT * from noris");
 
-while(true){
+while(true) {
       $kekka3 = mysql_fetch_assoc($result3);
       if($kekka3 == null) {
         break;
-      }else{
+      } else {
         $i++;
            // echo"<br>";
             $noris[] = $kekka3;
-          //  echo"<br>";
-    
+          //  echo"<br>";   
     }
 }
 
 ?>
 
+
+<!DOCTYPE html>
+<html lang="ja-JP">
 
 <head>
 
@@ -163,62 +159,51 @@ while(true){
         <!-- /.row -->
 
         <!-- Page Features -->
-        
                     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<?php
-foreach($items as $item ) { ?>
         <div class="row text-center">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="onigiri.jpg" alt="">
-                    <div class="caption">
-                    <h3><?php echo $item['item_name']; ?></h3>
-
-                        <form action="index.php" method="post">
-                        <input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
-                        <p>米：
-                         <select name="rice">
-                    <?php foreach ($rices as $rice ) { ?>    
-                        <option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
-                    <?php } ?>
-                        </select></p>
-                        <p>のり：
-                         <select name="nori">
-                    <?php foreach($noris as $nori ){ ?>
-                        <option value="<?php echo $nori['nori_id']; ?>" > <?php echo $nori['nori_name']; ?> </option> 
-                    <?php } ?> 
-                        </select></p>
-                      <p>個数：
-                        <select name="num">
-                    <?php for($i = 1; $i < 6; $i++){ ?>
-                        <option value= "<?php echo $i; ?>" > 
-                        <?php echo $i ; ?>
-                        </option>
-
-                    <?php } ?>
-                        </select> 
-                        個</p>
-                        <p>
-                        <input type ="submit" class="btn btn-primary" value = "カートに入れる"/>
-                        <!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
-                        <!--<a href="#" class="btn btn-default">More Info</a>-->
-                        </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-    
-<?php } ?>
-   
+			<?php foreach($items as $item ) { ?>
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="onigiri.jpg" alt="">
+						<div class="caption">
+							<h3><?php echo $item['item_name']; ?></h3>
+							<form action="index.php" method="post">
+							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
+								<p>米：<select name="rice">
+									<?php foreach ($rices as $rice ) { ?>    
+										<option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
+									<?php } ?>
+								</select></p>
+								<p>のり：<select name="nori">
+									<?php foreach($noris as $nori ){ ?>
+										<option value="<?php echo $nori['nori_id']; ?>" > <?php echo $nori['nori_name']; ?> </option> 
+									<?php } ?> 
+								</select></p>
+								<p>個数：<select name="num">
+									<?php for($i = 1; $i < 6; $i++){ ?>
+										<option value= "<?php echo $i; ?>" > <?php echo $i ; ?> </option>
+									<?php } ?>
+								</select>個</p>
+								<p>
+									<input type ="submit" class="btn btn-primary" value = "カートに入れる"/>
+									<!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
+									<!--<a href="#" class="btn btn-default">More Info</a>-->
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
         <!-- /.row -->
 
         <hr>
+
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>&copy; MUSUBI 2015</p>
                 </div>
             </div>
         </footer>
