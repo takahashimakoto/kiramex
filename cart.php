@@ -86,8 +86,11 @@ while(true){
 				echo $rices[$kome]['rice_name']."<br>";
 				$nori =  $orders['海苔'];
 				echo $noris[$nori]['nori_name']."<br>";
-				echo $orders['数']."個";
-
+				echo $orders['数']."個"."<br>";
+				$price = $orders['合計'];
+				echo "金額".$price*$orders['数']."円"."<br>";
+				echo "--------------------------------------------------------------------------";
+				echo "<br>"."<br>";
 			}
 			echo "</pre>";
 	?>
