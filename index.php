@@ -1,4 +1,6 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 session_start();
 if(!isset($_SESSION["order"])) {
     $_SESSION["order"] = array();
@@ -12,6 +14,7 @@ if(isset($_SESSION["order"])) {
             '数' => @$_POST['num'],
             '合計' => @$_POST['price']
         );
+}
 }
 /*
 echo "<pre>";
