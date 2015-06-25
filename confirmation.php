@@ -1,4 +1,9 @@
 <?php
+$name = $_POST['name'];
+$address = $_POST['address'];
+
+echo $name;
+echo $address;
 
 //// webpay start
 require 'vendor/autoload.php';
