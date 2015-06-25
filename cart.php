@@ -79,14 +79,14 @@ while(true){
 			foreach ($_SESSION["order"] as $orders) {
 			/*	echo $orders['具']; */
 				$i++;
-				echo "注文".$i."<br>" ;
+				echo "【注文".$i."】<br>" ;
 				$gu =  $orders['具'];
-				echo $items[$gu]['item_name']."<br>";
+				echo $items[$gu]['item_name']." / ";
 				$kome =  $orders['米'];
-				echo $rices[$kome]['rice_name']."<br>";
+				echo $rices[$kome]['rice_name']." / ";
 				$nori =  $orders['海苔'];
-				echo $noris[$nori]['nori_name']."<br>";
-				echo $orders['数']."個";
+				echo $noris[$nori]['nori_name']." / ";
+				echo $orders['数']."個"."<br><br>";
 
 			}
 			echo "</pre>";

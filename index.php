@@ -143,7 +143,7 @@ while(true) {
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>ほうたに</h1>
+            <h1>MUSUBI</h1>
             <p>お米と具材にこだわった、手作りおにぎりのお店です。</p>
             <p><a class="btn btn-primary btn-large">Call to action!</a></p>
         </header>
@@ -164,11 +164,11 @@ while(true) {
 			<?php foreach($items as $item ) { ?>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="ONIGIRI_01.jpg" alt="">
+						<img src="<?php echo $item['image']; ?>" alt="">
 						<div class="caption">
 							<h3><?php echo $item['item_name']; ?></h3>
 							<form action="index.php" method="post">
-							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
+							<input type="hidden" name="item" value="<?php echo $item['item_id']; ?>" >
 								<p>米：<select name="rice">
 									<?php foreach ($rices as $rice ) { ?>    
 										<option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
