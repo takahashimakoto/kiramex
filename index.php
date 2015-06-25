@@ -9,7 +9,8 @@ if(isset($_SESSION["order"])) {
             '具' => @$_POST['item'],
             '米' => @$_POST['rice'],
             '海苔' => @$_POST['nori'],
-            '数' => @$_POST['num']
+            '数' => @$_POST['num'],
+            '合計' => @$_POST['price']
         );
 }
 /*
@@ -166,9 +167,14 @@ while(true) {
 					<div class="thumbnail">
 						<img src="<?php echo $item['image']; ?>" alt="">
 						<div class="caption">
+                        <p>料金:<?php echo $item['price']; ?></p>
+
 							<h3><?php echo $item['item_name']; ?></h3>
 							<form action="index.php" method="post">
-							<input type="hidden" name="item" value="<?php echo $item['item_id']; ?>" >
+
+							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
+                            <input type="hidden" name="price" value ="<?php echo $item['price'] ?>" >
+
 								<p>米：<select name="rice">
 									<?php foreach ($rices as $rice ) { ?>    
 										<option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
@@ -189,6 +195,8 @@ while(true) {
 									<!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
 									<!--<a href="#" class="btn btn-default">More Info</a>-->
 								</p>
+
+                                
 							</form>
 						</div>
 					</div>
