@@ -165,7 +165,7 @@ while(true) {
 			<?php foreach($items as $item ) { ?>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="onigiri.jpg" alt="">
+						<img src="ONIGIRI_01.jpg" alt="">
 						<div class="caption">
                         <p>料金:<?php echo $item['price']; ?></p>
 
