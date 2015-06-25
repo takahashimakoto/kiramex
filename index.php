@@ -1,4 +1,6 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 session_start();
 if(!isset($_SESSION["order"])) {
     $_SESSION["order"] = array();
@@ -9,8 +11,11 @@ if(isset($_SESSION["order"])) {
             '具' => @$_POST['item'],
             '米' => @$_POST['rice'],
             '海苔' => @$_POST['nori'],
-            '数' => @$_POST['num']
+            '数' => @$_POST['num'],
+            '合計' => @$_POST['price'],
+            '注文番号' => @$_POST['order_id']
         );
+}
 }
 /*
 echo "<pre>";
@@ -143,7 +148,7 @@ while(true) {
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>ほうたに</h1>
+            <h1>MUSUBI</h1>
             <p>お米と具材にこだわった、手作りおにぎりのお店です。</p>
             <p><a class="btn btn-primary btn-large">Call to action!</a></p>
         </header>
@@ -161,14 +166,20 @@ while(true) {
         <!-- Page Features -->
                     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
         <div class="row text-center">
-			<?php foreach($items as $item ) { ?>
+			<?php foreach($items as $item ) {  $j = 0; $j++ ?>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="onigiri.jpg" alt="">
+						<img src="<?php echo $item['image']; ?>" alt="">
 						<div class="caption">
+
+                        <p>料金:<?php echo $item['price']; ?></p>
+
 							<h3><?php echo $item['item_name']; ?></h3>
 							<form action="index.php" method="post">
+                            <input type="hidden" name = "order_id" value = "<?php $j ?>" > 
 							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
+                            <input type="hidden" name="price" value ="<?php echo $item['price'] ?>" >
+
 								<p>米：<select name="rice">
 									<?php foreach ($rices as $rice ) { ?>    
 										<option value="<?php echo $rice['rice_id']; ?>" > <?php echo $rice['rice_name']; ?> </option>
@@ -189,6 +200,8 @@ while(true) {
 									<!--<a href="#" class="btn btn-primary">カートに入れる</a>-->
 									<!--<a href="#" class="btn btn-default">More Info</a>-->
 								</p>
+
+                                
 							</form>
 						</div>
 					</div>
