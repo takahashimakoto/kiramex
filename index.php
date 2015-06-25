@@ -16,6 +16,8 @@ if(isset($_SESSION["order"])) {
         );
 }
 }
+
+print_r ($_SESSION["order"]);
 /*
 echo "<pre>";
 print_r($_SESSION["order"]);
