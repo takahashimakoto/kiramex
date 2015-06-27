@@ -227,9 +227,13 @@ EOM;
       echo "<pre>";
       echo "--------------------------------------------------------------------------";
       $i = 0;
+      $im = 0;
+      $ordermail = "";
+      $ordermails = "";
       foreach ($_SESSION["order"] as $orders) {
       /*  echo $orders['具']; */
         $i++;
+        $im++;
         echo "<br><br>【注文".$i."】<br>" ;
         $gu =  $orders['具'];
           echo $items[$gu]['item_name']." / ";
@@ -247,8 +251,11 @@ EOM;
           $mail_sum = $price*$orders['数'];
         echo "<br>";
         echo "--------------------------------------------------------------------------";
+        $ordermail.$im = $items[$gu]['item_name']." / ".$rices[$kome]['rice_name']." / ".$noris[$nori]['nori_name']." / ".$orders['数']."個"." / ".$orders['合計']."円<br>";
+        $ordermails .= $ordermail.$im;
       }
       echo "</pre><br>";
+      echo $ordermails;
 ?>
 
   <form method="post">
