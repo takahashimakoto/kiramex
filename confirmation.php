@@ -106,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   mb_language("ja");
   mb_internal_encoding("UTF-8");
 //  $mailbody = file_get_contents('completion_mail.php');
+  $mail_shio = "博多の塩";
   $mailbody = <<< EOM
 ○○ 様
 
@@ -135,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ○注文商品番号1505266235-07（◆進行状況：予約完了・入金確認済）
  [具　　　材]　$mail_gu
  [お　　　米]　$mail_kome
+ [お　　　塩]　$mail_shio
  [海　　　苔]　$mail_nori
  [個　　　数]　$mail_num
  [合　計　額]　$mail_sum
@@ -228,7 +230,7 @@ EOM;
       foreach ($_SESSION["order"] as $orders) {
       /*  echo $orders['具']; */
         $i++;
-        echo "<br>【注文".$i."】<br>" ;
+        echo "<br><br>【注文".$i."】<br>" ;
         $gu =  $orders['具'];
           echo $items[$gu]['item_name']." / ";
           $mail_gu = $items[$gu]['item_name'];
@@ -243,14 +245,15 @@ EOM;
         $price = $orders['合計'];
           echo "金額".$price*$orders['数']."円"."<br>";
           $mail_sum = $price*$orders['数'];
-        echo "--------------------------------------------------------------------------";
         echo "<br>";
+        echo "--------------------------------------------------------------------------";
       }
-      echo "</pre>";
+      echo "</pre><br>";
 ?>
 
   <form method="post">
-    金額：<input type='text' name='amount'><br>
+    <p>合計金額：<?php echo $mail_sum ?>円</p>
+    	<input type='hidden' name='amount' value="<?php echo $mail_sum ?>"><br>
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
   </form>
 </body>
