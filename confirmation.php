@@ -1,10 +1,14 @@
 <?php
+$name = "";
+$address = "";
+$mailaddress = "";
 $name = $_POST['name'];
 $address = $_POST['address'];
+$mailaddress = $_POST['mailaddress'];
 
-echo $name;
-echo $address;
-
+//echo $name."<br>";
+//echo $address."<br>";
+//echo $mailaddress."<br>";
 
 //// curt check start
 session_start();
@@ -15,7 +19,7 @@ mysql_query("SET NAMES utf8",$connect);
 
 //ここでおにぎりのデータベース情報をデータベースから取る
 $i = 1;
-$result1=mysql_db_query("musubi","SELECT * from items");
+$result1 = mysql_db_query("musubi","SELECT * from items");
 
 while(true){
       $kekka1 = mysql_fetch_assoc($result1);
@@ -31,7 +35,7 @@ while(true){
 
 //ここからお米のデータベース情報をデータベースから取る
 $i = 1;
-$result2=mysql_db_query("musubi","SELECT * from rices");
+$result2 = mysql_db_query("musubi","SELECT * from rices");
 
 while(true) {
       $kekka2 = mysql_fetch_assoc($result2);
@@ -47,7 +51,7 @@ while(true) {
 
 //ここからのりのデータベース情報をデータベースから取る
 $i = 1;
-$result3=mysql_db_query("musubi","SELECT * from noris");
+$result3 = mysql_db_query("musubi","SELECT * from noris");
 
 while(true) {
       $kekka3 = mysql_fetch_assoc($result3);
@@ -64,9 +68,10 @@ while(true) {
 
 
 //// webpay start
+
 require 'vendor/autoload.php';
 use WebPay\WebPay;
-
+/*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $webpay = new WebPay('test_secret_dHh2fLeBJ80menecnFf863Et');
   $result = $webpay->charge->create(array(
@@ -75,10 +80,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'card' => $_POST['webpay-token'],
   ));
 }
+*/
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $webpay = new WebPay('test_secret_dHh2fLeBJ80menecnFf863Et');
+  $amount = "";
+  $webpay_token = "";
+
+  if(isset($_POST['amount'])) {
+    $amount = $_POST['amount'];
+  }
+  if(isset($_POST['webpay-token'])) {
+    $webpay_token = $_POST['webpay-token'];
+  }
+
+  if(!empty($amount) && !empty($webpay_token)){
+  	$result = $webpay->charge->create(array(
+      'amount' => $amount,
+      'currency' => 'jpy',
+      'card' => $webpay_token
+  ));
+  }
+
+}
+
+
 //// webpay end
 
 //// mailer start
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(!empty($amount) && !empty($webpay_token)){
 
   require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; //read mailer
   require 'config_sample.php'; // read host, username and password
@@ -106,7 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   mb_language("ja");
   mb_internal_encoding("UTF-8");
 //  $mailbody = file_get_contents('completion_mail.php');
-  $mail_shio = "博多の塩";
+  $ordermails = $_POST['ordermails'];
+  $mail_sums = $_POST['mail_sums'];
   $mailbody = <<< EOM
 ○○ 様
 
@@ -126,20 +158,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ■予約情報 1
 ────────────────────────────────
 [ご住所]
+ $address
  〒113-0034 東京都文京区湯島1-6-3湯島1丁目ビル7F
 [ご予約者]
+ $name
  株式会社シー・コネクト　加藤竜也　様
 
 ────────────────────────────────
 ■出荷商品情報
 ────────────────────────────────
 ○注文商品番号1505266235-07（◆進行状況：予約完了・入金確認済）
- [具　　　材]　$mail_gu
- [お　　　米]　$mail_kome
- [お　　　塩]　$mail_shio
- [海　　　苔]　$mail_nori
- [個　　　数]　$mail_num
- [合　計　額]　$mail_sum
+ $ordermails
+
+ 【合計金額】
+ $mail_sums 円
+
+ 【備考】
  [予　約　日]　受付日確定から5日以内
  [製　造　元]　MUSUBI.LLC
 
@@ -216,6 +250,7 @@ EOM;
 </head>
 
 <body>
+
   <h1>確認画面</h1>
   <ul>
     <li><a href="purchase.php">【←】購入画面に戻る</a></li>
@@ -230,6 +265,7 @@ EOM;
       $im = 0;
       $ordermail = "";
       $ordermails = "";
+      $mail_sums = "";
       foreach ($_SESSION["order"] as $orders) {
       /*  echo $orders['具']; */
         $i++;
@@ -237,30 +273,37 @@ EOM;
         echo "<br><br>【注文".$i."】<br>" ;
         $gu =  $orders['具'];
           echo $items[$gu]['item_name']." / ";
-          $mail_gu = $items[$gu]['item_name'];
+//          $mail_gu = $items[$gu]['item_name'];
         $kome =  $orders['米'];
           echo $rices[$kome]['rice_name']." / ";
-          $mail_kome = $rices[$kome]['rice_name'];
+//          $mail_kome = $rices[$kome]['rice_name'];
         $nori =  $orders['海苔'];
           echo $noris[$nori]['nori_name']." / ";
-          $mail_nori = $noris[$nori]['nori_name'];
+//          $mail_nori = $noris[$nori]['nori_name'];
         echo $orders['数']."個"." / ";
-          $mail_num = $orders['数'];
+//          $mail_num = $orders['数'];
         $price = $orders['合計'];
           echo "金額".$price*$orders['数']."円"."<br>";
           $mail_sum = $price*$orders['数'];
         echo "<br>";
         echo "--------------------------------------------------------------------------";
-        $ordermail.$im = $items[$gu]['item_name']." / ".$rices[$kome]['rice_name']." / ".$noris[$nori]['nori_name']." / ".$orders['数']."個"." / ".$orders['合計']."円<br>";
+        $ordermail.$im = "【注文".$i."】\n"." [具　　　材] ".$items[$gu]['item_name']."\n [お　　　米] ".$rices[$kome]['rice_name']."\n [海　　　苔] ".$noris[$nori]['nori_name']."\n [個　　　数] ".$orders['数']."個"."\n [金　　　額] ".$price*$orders['数']."円\n";
         $ordermails .= $ordermail.$im;
+        $mail_sums += $mail_sum;
       }
-      echo "</pre><br>";
-      echo $ordermails;
+      echo "</pre>";
+      //echo $ordermails;
+      //echo $mail_sums;
 ?>
 
+<!--<?php echo $mailbody; ?>-->
+
+  <p>合計金額：<?php echo $mail_sums ?>円</p><br>
+
   <form method="post">
-    <p>合計金額：<?php echo $mail_sum ?>円</p>
-    	<input type='hidden' name='amount' value="<?php echo $mail_sum ?>"><br>
+    <input type='hidden' name='amount' value="<?php echo $mail_sums ?>">
+    <input type='hidden' name='ordermails' value="<?php echo $ordermails ?>">
+    <input type='hidden' name='mail_sums' value="<?php echo $mail_sums ?>">
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
   </form>
 </body>
