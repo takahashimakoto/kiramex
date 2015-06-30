@@ -60,10 +60,8 @@
                 </tbody></table>
               </div>
               <form name="NEXT" method="POST" action="confirmation.php" novalidate="novalidate">
-                <input type="hidden" name="STORENAME" value="olympia.hc">
+            
                 <input type="hidden" name="KAGOID" value="7c38b02d2268c6a3a9392615825c2ece">
-                <input type="hidden" id="deliveryMailName" value="メール便">
-                <input type="hidden" id="deliveryNormal" value="通常配送">
                 <input type="hidden" name="CMD" value="ENQUETE">
                                 <!-- 購入者情報　ここから //-->
                 <br>
@@ -82,15 +80,15 @@
                           <div style="float:left;margin-top:12px;">姓：</div>
                           <div style="float:left">
                           <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position:
-                           absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）山田</label><input type="text" name="LNAME" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" required="" bind-placeholder-label="true">
+                           absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）山田</label><input type="text" name="name" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" required="" bind-placeholder-label="true">
                           </div>
                           <div style="float:left;margin-top:12px;">　名：</div>
                           <div style="float:left">
                           <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: 
-                          absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）太郎</label><input type="text" name="FNAME" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
+                          absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）太郎</label><input type="text" name="name" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
                           </div>
                           <div style="float:left;margin-top:12px;">
-                          <div id="NAME" style="float:left"></div>
+                          <div id="name" style="float:left"></div>
                           <label for="name" class="has-error" style="display: none;"></label>
                           </div>
                           </td>
@@ -102,14 +100,14 @@
                         <td align="left" class="backcolor2">
                             <div style="float:left;margin-top:12px;">せい：</div>
                             <div style="float:left">
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）やまだ</label><input type="text" class="validate" name="LNAME_KANA" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）やまだ</label><input type="text" class="validate" name="name_kana" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
                             </div>
                             <div style="float:left;margin-top:12px;">　めい：</div>
                             <div style="float:left">
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）たろう</label><input type="text" class="validate" name="FNAME_KANA" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）たろう</label><input type="text" class="validate" name="name_kana" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
                             </div>
                             <div style="float:left;margin-top:12px;">
-                              <div id="NAME_KANA" style="float:left"></div>
+                              <div id="name_kana" style="float:left"></div>
                               <label for="name_kana" class="has-error" style="display: none;"></label>
                             </div>
                           </td>
@@ -123,7 +121,7 @@
                           &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
                           <td align="left" class="backcolor2">
                             <div>
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="ADDR1" maxlength="64" value="" bind-placeholder-label="true">
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
                             </div>
                           </td>
                       </tr>
@@ -134,7 +132,7 @@
                           &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
                           <td align="left" class="backcolor2">
                             <div>
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="ADDR1" maxlength="64" value="" bind-placeholder-label="true">
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
                             </div>
                           </td>
                       </tr>
@@ -167,10 +165,9 @@
                   <!-- 次へボタン　ここから //-->
                                                             
                                                         </div>
-              </form>
+             
                   
-　　　　　　　　　　　　　<form action = "confirmation.php" method = "POST">
-                    <input type = "text" name ="comment"><br/>
+　　　　　　　　　　
                     <input type = "submit" value ="次へ">
                 </form>
             <br>
