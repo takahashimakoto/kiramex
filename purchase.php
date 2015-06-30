@@ -1,3 +1,64 @@
+<?php
+
+session_start();
+$connect = mysql_connect("localhost","root","");
+$db = "musubi";
+//SQLをUTF8形式で書くよ、という意味
+mysql_query("SET NAMES utf8",$connect);
+
+//ここでおにぎりのデータベース情報をデータベースから取る
+$i = 1;
+$result1=mysql_db_query("musubi","SELECT * from items");
+
+while(true){
+      $kekka1 = mysql_fetch_assoc($result1);
+      if($kekka1 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $items[$kekka1['item_id']] = $kekka1;
+          //  echo"<br>";
+ 
+       }
+} 
+   //print_r($items);
+//ここからお米のデータベース情報をデータベースから取る
+$i = 1;
+$result2=mysql_db_query("musubi","SELECT * from rices");
+
+while(true){
+      $kekka2 = mysql_fetch_assoc($result2);
+      if($kekka2 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $rices[$kekka2['rice_id']] = $kekka2;
+          //  echo"<br>";
+    
+    }
+}
+
+//ここからのりのデータベース情報をデータベースから取る
+$i = 1;
+$result3=mysql_db_query("musubi","SELECT * from noris");
+
+while(true){
+      $kekka3 = mysql_fetch_assoc($result3);
+      if($kekka3 == null) {
+        break;
+      }else{
+        $i++;
+           // echo"<br>";
+            $noris[$kekka3['nori_id']] = $kekka3;
+          //  echo"<br>";
+    
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -34,32 +95,41 @@
               <!-- <input type="button" value="戻る" onClick="document.PREV.submit();" class="button1"> -->
             </p>
             <!-- エラーメッセージ //-->
-            <h4 style="display:inline;">▼ ご注文内容</h4>
-              <div class="bordlayoutp3 center">
-                <table width="95%" border="0" cellpadding="0" cellspacing="0" class="border">
-                  <tbody>
-		            <tr class="backcolor1 center">
-		              <td>品名</td>
-		              <td>価格</td>
-		              <td>数量</td>
-		              <td>小計</td>
-		            </tr>
-                  <!-- カゴ中身 ループ ここから //-->
-                    <tr class="backcolor2">
-                      <td class="center"><img src="/vol1blog/o/olympia.hc.shopserve.jp/docs/pic-labo/timg/100211-02.jpg" width="50" height="37"></td>
-                      <td>ミニタブレット（フリュイブラン）</td>
-                      <td align="right">227円</td>
-                      <td align="center">1個</td>
-                      <td align="right">227円</td>
-                    </tr>
-                  <!-- カゴ中身 ループ ここまで //-->
-                    <tr class="backcolor2">
-                      <td colspan="4" align="right">商品合計</td>
-                      <td align="right">227円</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+
+      <h4 style="display:inline;">▼ ご注文内容</h4>
+      <?php
+      $i = 0;
+      echo "<p>カートの中身<p><br>";
+      echo "<pre>";
+      $mail_sums = "";
+      foreach ($_SESSION["order"] as $orders) {
+      /*  echo $orders['具']; */ 
+        $i++;
+        echo "注文".$i."<br>" ;
+        //$order_id = $orders['注文番号'];
+        //echo $orders[$id]['order_id']." / " ;
+        $gu =  $orders['具'];
+        echo $items[$gu]['item_name']." / ";
+        $kome =  $orders['米'];
+        echo $rices[$kome]['rice_name']." / ";
+        $nori =  $orders['海苔'];
+        echo $noris[$nori]['nori_name']." / ";
+        echo $orders['数']."個"."           ";
+        $price = $orders['合計'];
+        echo "金額".$price*$orders['数']."円"."<br>";
+        $mail_sum = $price*$orders['数'];
+
+        echo "--------------------------------------------------------------------------";
+        echo "<br>"."<br>";
+        $mail_sums += $mail_sum;
+
+      }
+      echo "</pre>";
+
+  ?>
+  
+             <p>合計金額：<?php echo $mail_sums ?>円</p><br>
+
               <form name="NEXT" method="POST" action="confirmation.php" novalidate="novalidate">
                 <input type="hidden" name="KAGOID" value="7c38b02d2268c6a3a9392615825c2ece">
                 <input type="hidden" name="CMD" value="ENQUETE">
@@ -75,40 +145,10 @@
                     
                                           <tbody><tr align="center">
                         <td align="left" class="backcolor1">                           お名前
-                          &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
-                        <td align="left" class="backcolor2">
-                          <div style="float:left;margin-top:12px;">姓：</div>
-                          <div style="float:left">
-                          <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position:
-                           absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）山田</label><input type="text" name="name" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" required="" bind-placeholder-label="true">
-                          </div>
-                          <div style="float:left;margin-top:12px;">　名：</div>
-                          <div style="float:left">
-                          <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: 
-                          absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）太郎</label><input type="text" name="name" class="validate required" style="width: 80px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
-                          </div>
-                          <div style="float:left;margin-top:12px;">
-                          <div id="name" style="float:left"></div>
-                          <label for="name" class="has-error" style="display: none;"></label>
-                          </div>
-                          </td>
-                      </tr>
-                    
-                                          <tr align="center">
-                        <td align="left" class="backcolor1">                           お名前(かな)
-                           </td>
-                        <td align="left" class="backcolor2">
-                            <div style="float:left;margin-top:12px;">せい：</div>
-                            <div style="float:left">
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）やまだ</label><input type="text" class="validate" name="name_kana" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
-                            </div>
-                            <div style="float:left;margin-top:12px;">　めい：</div>
-                            <div style="float:left">
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）たろう</label><input type="text" class="validate" name="name_kana" style="width: 70px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" maxlength="32" size="15" value="" bind-placeholder-label="true">
-                            </div>
-                            <div style="float:left;margin-top:12px;">
-                              <div id="name_kana" style="float:left"></div>
-                              <label for="name_kana" class="has-error" style="display: none;"></label>
+                        &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
+                          <td align="left" class="backcolor2">
+                            <div>
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
                             </div>
                           </td>
                       </tr>
@@ -168,7 +208,7 @@
              
                   
 　　　　　　　　　　
-                    <input type = "submit" value ="次へ">
+                    <input type = "submit" value ="確認画面に進む">
                 </form>
             <br>
             <div align="left" style="float:left;width:120px">
