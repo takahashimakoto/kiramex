@@ -36,7 +36,7 @@ while(true){
           //  echo"<br>"; 
       }
 }
-.
+
 //ここからお米のデータベース情報をデータベースから取る
 $i = 1;
 $result2 = mysql_db_query("musubi","SELECT * from rices");
