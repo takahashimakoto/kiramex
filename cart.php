@@ -75,25 +75,27 @@ while(true){
 
 			echo "<p>カートの中身<p><br>";
 			echo "<pre>";
-			$i = 0;
 			foreach ($_SESSION["order"] as $orders) {
 			/*	echo $orders['具']; */
-				$i++;
-				echo "<br>【注文".$i."】<br>" ;
+			//	echo "注文".$i."<br>" ;
+				$order_id = $orders['注文番号'];
+				echo "注文".$order_id." / " ;
 				$gu =  $orders['具'];
 				echo $items[$gu]['item_name']." / ";
 				$kome =  $orders['米'];
 				echo $rices[$kome]['rice_name']." / ";
 				$nori =  $orders['海苔'];
 				echo $noris[$nori]['nori_name']." / ";
-				echo $orders['数']."個"." / ";
+				echo $orders['数']."個"."           ";
 				$price = $orders['合計'];
-				echo "金額".$price*$orders['数']."円"."<br><br>";
-				echo "--------------------------------------------------------------------------";
-				echo "<br>";
+				echo "金額".$price*$orders['数']."円"."<br>";
 
+				echo "--------------------------------------------------------------------------";
+				echo "<br>"."<br>";
 			}
 			echo "</pre>";
+
+
 	?>
 </body>
 
