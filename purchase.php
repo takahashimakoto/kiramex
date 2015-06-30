@@ -30,37 +30,37 @@
           <div class="mainCont">
             <p>必要事項を記入してください。各項目の入力が終わりましたら「次へ」ボタンをクリックしてください。</p>
             <p>
-                              <input type="button" value="戻る" onclick="cart.php" class="regi_back">
-                <!-- <input type="button" value="戻る" onClick="document.PREV.submit();" class="button1"> -->
-                          </p>
+              <input type="button" value="戻る" onclick="cart.php" class="regi_back">
+              <!-- <input type="button" value="戻る" onClick="document.PREV.submit();" class="button1"> -->
+            </p>
             <!-- エラーメッセージ //-->
-                                      <h4 style="display:inline;">▼ ご注文内容</h4>
-
+            <h4 style="display:inline;">▼ ご注文内容</h4>
               <div class="bordlayoutp3 center">
                 <table width="95%" border="0" cellpadding="0" cellspacing="0" class="border">
-                  <tbody><tr class="backcolor1 center">
-                    <td>品名</td>
-                    <td>価格</td>
-                    <td>数量</td>
-                    <td>小計</td>
-                  </tr>
+                  <tbody>
+		            <tr class="backcolor1 center">
+		              <td>品名</td>
+		              <td>価格</td>
+		              <td>数量</td>
+		              <td>小計</td>
+		            </tr>
                   <!-- カゴ中身 ループ ここから //-->
-                                      <tr class="backcolor2">
+                    <tr class="backcolor2">
                       <td class="center"><img src="/vol1blog/o/olympia.hc.shopserve.jp/docs/pic-labo/timg/100211-02.jpg" width="50" height="37"></td>
-                      <td>ミニタブレット（フリュイブラン）                                            </td>
+                      <td>ミニタブレット（フリュイブラン）</td>
                       <td align="right">227円</td>
                       <td align="center">1個</td>
                       <td align="right">227円</td>
                     </tr>
-                                                        <!-- カゴ中身 ループ ここまで //-->
-                                                      <tr class="backcolor2">
-                    <td colspan="4" align="right">商品合計</td>
-                    <td align="right">227円</td>
-                  </tr>
-                </tbody></table>
+                  <!-- カゴ中身 ループ ここまで //-->
+                    <tr class="backcolor2">
+                      <td colspan="4" align="right">商品合計</td>
+                      <td align="right">227円</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <form name="NEXT" method="POST" action="confirmation.php" novalidate="novalidate">
-            
                 <input type="hidden" name="KAGOID" value="7c38b02d2268c6a3a9392615825c2ece">
                 <input type="hidden" name="CMD" value="ENQUETE">
                                 <!-- 購入者情報　ここから //-->

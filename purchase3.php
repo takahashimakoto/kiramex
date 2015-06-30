@@ -16,6 +16,7 @@
 	<p>名前：</p><input type="text" name="name" value="" placeholder="尾握 結">
 	<p>住所：</p><input type="text" name="address" value="" placeholder="〒100-0001 東京都千代田区千代田1-1-1 MUSUBI.bldg.">
 	<p>メールアドレス：</p><input type="text" name="mailaddress" value="" placeholder="メールアドレス">
+	<p>電話番号：</p><input type="text" name="phone" value="" placeholder="電話番号">
 	<br><br><br>
 	<input type="submit" class="btn btn-primary" value="確認画面に進む">
 </form>
