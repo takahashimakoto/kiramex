@@ -6,7 +6,7 @@
 
 <body>
 
-<!--
+
 <h1>キャンセル</h1>
 
 <form action ="cart.php" method="post"> 
@@ -15,15 +15,15 @@
 </form>
 
 <?php
-
-//foreach ($_SESSION['order'] as $index => $order) {
-// if ($order['order_id'] = $_POST['order_id']) {
-//  print_r($_SESSION['order'][$index]);
+/*
+foreach ($_SESSION['order'] as $index => $order) {
+if ($order['order_id'] = $_POST['order_id']) {
+  print_r($_SESSION['order'][$index]);
  }
 }
-
+*/
 ?>
--->
+
 	<h1>カートの中身</h1>
 	<ul>
 		<li><a href="index.php">【←】商品ページに戻る</a></li>
@@ -89,16 +89,16 @@ while(true){
     
     }
 }
-
+$mail_sums= "";
 
 
 			echo "<p>カートの中身<p><br>";
 			echo "<pre>";
 			foreach ($_SESSION["order"] as $orders) {
-			/*	echo $orders['具']; */
-			//	echo "注文".$i."<br>" ;
-				$order_id = $orders['注文番号'];
-				echo "注文".$order_id." / " ;
+				echo $orders['具']; 
+				echo "注文".$i."<br>" ;
+				//$order_id = $orders['注文番号'];
+				//echo "注文".$order_id." / " ;
 				$gu =  $orders['具'];
 				echo $items[$gu]['item_name']." / ";
 				$kome =  $orders['米'];
@@ -108,14 +108,16 @@ while(true){
 				echo $orders['数']."個"."           ";
 				$price = $orders['合計'];
 				echo "金額".$price*$orders['数']."円"."<br>";
-
+         $mail_sum = $price*$orders['数'];
 				echo "--------------------------------------------------------------------------";
 				echo "<br>"."<br>";
+        $mail_sums += $mail_sum;
+          
 			}
 			echo "</pre>";
 
-
-	?>
+      ?>
+    <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 </body>
 
 </html>
