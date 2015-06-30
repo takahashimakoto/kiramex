@@ -253,7 +253,7 @@ EOM;
   $mail->Body    = $mailbody;
   $mail->SMTPoptions = array (
     'ssl' => array(
-      'verify_peer' = false
+      'verify_peer' => false
     )
   );
   //$mail->AltBody = $mailbody;
