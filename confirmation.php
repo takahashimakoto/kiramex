@@ -251,7 +251,11 @@ http://#
 EOM;
   $mail->Subject = mb_encode_mimeheader('[MUSUBI]ご注文いただきありがとうございます');
   $mail->Body    = $mailbody;
-  $mail->options['ssl']['verify_peer'] = false;
+  $mail->SMTPoptions = array (
+    'ssl' => array(
+      'verify_peer' = false
+    )
+  );
   //$mail->AltBody = $mailbody;
 
   if(!$mail->send()) {
