@@ -1,5 +1,17 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION["order_id"]) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+  $_SESSION["order_id"]++;
+} else if (!isset($_SESSION["order_id"])) {
+  $_SESSION["order_id"] = 0;
+}
+
+
+echo "注文番号".$_SESSION["order_id"];
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 session_start();
@@ -13,7 +25,8 @@ if(isset($_SESSION["order"])) {
             '米' => @$_POST['rice'],
             '海苔' => @$_POST['nori'],
             '数' => @$_POST['num'],
-            '合計' => @$_POST['price']
+            '合計' => @$_POST['price'],
+            '注文番号' => @$_SESSION['order_id']
         );
 }
 }

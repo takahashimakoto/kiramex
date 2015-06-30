@@ -6,23 +6,8 @@
 
 <body>
 
+<!--キャンセルのフォーム-->
 
-<h1>キャンセル</h1>
-
-<form action ="cart.php" method="post"> 
-  <p>注文番号:<input type="text" id="order_id" name="order_id" value="" /></p>
-  <p><input type="button" id="button01" name="button01" value="キャンセルする" /></p>
-</form>
-
-<?php 
-
-foreach ($_SESSION['order'] as $index => $order) {
- if ($order['order_id'] = $_POST['order_id']) {
-  print_r($_SESSION['order'][$index]);
- }
-}
-
-?> 
 
 	<h1>カートの中身</h1>
 	<ul>
@@ -56,7 +41,7 @@ while(true){
  
        }
 } 
-   print_r($items);
+ //  print_r($items);
 //ここからお米のデータベース情報をデータベースから取る
 $i = 1;
 $result2=mysql_db_query("musubi","SELECT * from rices");
@@ -91,15 +76,17 @@ while(true){
     }
 }
 
+      echo "ーーーーーーーーーーーーーーーーーーーーーーー";
 
-
-			echo "<p>カートの中身<p><br>";
+  foreach ($_SESSION['order'] as $index => $order) {
+ if ($order['注文番号'] == @$_POST['order_id']) {
+  unset($_SESSION['order'][$index]);
+ }
+}
 			echo "<pre>";
 			foreach ($_SESSION["order"] as $orders) {
-			/*	echo $orders['具']; */ 
-			//	echo "注文".$i."<br>" ;
 				$order_id = $orders['注文番号'];
-				echo "注文".$order_id." / " ;
+				echo "注文".$order_id."：" ;
 				$gu =  $orders['具'];
 				echo $items[$gu]['item_name']." / ";
 				$kome =  $orders['米'];
@@ -108,9 +95,14 @@ while(true){
 				echo $noris[$nori]['nori_name']." / ";
 				echo $orders['数']."個"."           ";
 				$price = $orders['合計'];
-				echo "金額".$price*$orders['数']."円"."<br>";
-
-				echo "--------------------------------------------------------------------------";
+				echo "金額".$price*$orders['数']."円"."　";
+  ?>
+        <form action="cart.php" method="post">
+        <input type=hidden value="<?php echo $orders['注文番号']; ?>" name="order_id">
+        <input type ='submit' class='btn btn-primary' value = 'キャンセル'>
+        </form>
+  <?php
+				echo "ーーーーーーーーーーーーーーーーーーーーーーーーーーー";
 				echo "<br>"."<br>";
 			}
 			echo "</pre>";
