@@ -1,4 +1,7 @@
 <?php
+
+$name = "";
+$address = "";
 $name = "";
 $address = "";
 $phone = "";
@@ -7,7 +10,6 @@ $name = $_POST['name'];
 $address = $_POST['address'];
 $phone = $_POST['phone'];
 $mailaddress = $_POST['mailaddress'];
-
 //echo $name."<br>";
 //echo $address."<br>";
 //echo $mailaddress."<br>";
@@ -106,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
+
 //// webpay end
 
 //// mailer start
@@ -158,7 +161,7 @@ if(!empty($amount) && !empty($webpay_token)){
   $ordermails = $_POST['ordermails'];
   $mail_sums = $_POST['mail_sums'];
   $mailbody = <<< EOM
-○○ 様
+$name 様
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃注文番号　：　　1505266235
@@ -301,7 +304,7 @@ EOM;
         $nori =  $orders['海苔'];
           echo $noris[$nori]['nori_name']." / ";
 //          $mail_nori = $noris[$nori]['nori_name'];
-        echo $orders['数']."個"." / ";
+        echo $num =$orders['数']."個"." / ";
 //          $mail_num = $orders['数'];
         $price = $orders['合計'];
           echo "金額".$price*$orders['数']."円"."<br>";
@@ -315,9 +318,22 @@ EOM;
       echo "</pre>";
       //echo $ordermails;
       //echo $mail_sums;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$sql="INSERT into deals(deal_id,user_name,address)
+  VALUES(NULL,$name,$address)";
+mysql_db_query($db, $sql);
+$last_id = mysql_insert_id();
+$sqli="INSERT into details(detail_id,item_id,item_num,rice_id,nori_id,deal_id)
+  VALUES(NULL,$gu,$num,$kome,$nori,$last_id)";
+mysql_db_query($db, $sqli);
+
+}
+  
 ?>
 
-<?php //echo $mailbody; ?>
+
+<?php /*echo $mailbody;*/ ?>
+
 
   <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 
@@ -331,5 +347,6 @@ EOM;
     <input type='hidden' name='mailaddress' value="<?php echo $mailaddress ?>">
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
   </form>
+
 </body>
 </html>
