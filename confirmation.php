@@ -311,8 +311,6 @@ EOM;
           $mail_sum = $price*$orders['数'];
         echo "<br>";
         echo "--------------------------------------------------------------------------";
-        $ordermail.$im = "【注文".$i."】\n"." [具　　　材] ".$items[$gu]['item_name']."\n [お　　　米] ".$rices[$kome]['rice_name']."\n [海　　　苔] ".$noris[$nori]['nori_name']."\n [個　　　数] ".$orders['数']."個"."\n [金　　　額] ".$price*$orders['数']."円\n";
-        $ordermails .= $ordermail.$im;
         $mail_sums += $mail_sum;
       }
       echo "</pre>";
@@ -320,12 +318,16 @@ EOM;
       //echo $mail_sums;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $sql="INSERT into deals(deal_id,user_name,address)
-  VALUES(NULL,$name,$address)";
-mysql_db_query($db, $sql);
+  VALUES(NULL,'$name','$address')";
+$rs = mysql_db_query($db, $sql);
+          if(!$rs){
+            echo mysql_error();
+          }
 $last_id = mysql_insert_id();
 $sqli="INSERT into details(detail_id,item_id,item_num,rice_id,nori_id,deal_id)
-  VALUES(NULL,$gu,$num,$kome,$nori,$last_id)";
+  VALUES(NULL,'$gu','$num','$kome','$nori','$last_id')";
 mysql_db_query($db, $sqli);
+
 
 }
   
