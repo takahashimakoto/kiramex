@@ -5,6 +5,25 @@
 </head>
 
 <body>
+
+<!--
+<h1>キャンセル</h1>
+
+<form action ="cart.php" method="post"> 
+  <p>注文番号:<input type="text" id="order_id" name="order_id" value="" /></p>
+  <p><input type="button" id="button01" name="button01" value="キャンセルする" /></p>
+</form>
+
+<?php
+
+//foreach ($_SESSION['order'] as $index => $order) {
+// if ($order['order_id'] = $_POST['order_id']) {
+//  print_r($_SESSION['order'][$index]);
+ }
+}
+
+?>
+-->
 	<h1>カートの中身</h1>
 	<ul>
 		<li><a href="index.php">【←】商品ページに戻る</a></li>
