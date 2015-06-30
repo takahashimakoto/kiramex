@@ -146,10 +146,10 @@ if(!empty($amount) && !empty($webpay_token)){
 //  $mail->addAddress($mailaddress, $name);
   $mail->From = 'musubi151515@gmail.com';
   $mail->FromName = 'musubi-staff';
-//  $mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipient
+  //$mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipient
   //$mail->addAddress('ellen@example.com');               // Name is optional
   //$mail->addReplyTo('musubi151515@gmail.com', 'Information');
-  //$mail->addCC('cc@example.com');
+  $mail->addCC('musubi151515@gmail.com');
   //$mail->addBCC('bcc@example.com');
 
   //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
