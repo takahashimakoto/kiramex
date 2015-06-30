@@ -161,7 +161,7 @@ if(!empty($amount) && !empty($webpay_token)){
   $ordermails = $_POST['ordermails'];
   $mail_sums = $_POST['mail_sums'];
   $mailbody = <<< EOM
-○○ 様
+$name 様
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃注文番号　：　　1505266235
