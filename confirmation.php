@@ -36,7 +36,7 @@ while(true){
           //  echo"<br>"; 
       }
 }
-.
+
 //ここからお米のデータベース情報をデータベースから取る
 $i = 1;
 $result2 = mysql_db_query("musubi","SELECT * from rices");
@@ -253,7 +253,7 @@ EOM;
   $mail->Body    = $mailbody;
   $mail->SMTPoptions = array (
     'ssl' => array(
-      'verify_peer' = false
+      'verify_peer' => false
     )
   );
   //$mail->AltBody = $mailbody;
