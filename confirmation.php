@@ -317,7 +317,7 @@ EOM;
       //echo $mail_sums;
 ?>
 
-<!--<?php echo $mailbody; ?>-->
+<?php //echo $mailbody; ?>
 
   <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 
