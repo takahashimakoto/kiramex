@@ -1,38 +1,24 @@
 <html>
 
 <head>
-	<meta content="text/html" charset="UTF-8">
+  <meta content="text/html" charset="UTF-8">
 </head>
 
 <body>
 
+<!--キャンセルのフォーム-->
 
-<h1>キャンセル</h1>
 
-<form action ="cart.php" method="post"> 
-  <p>注文番号:<input type="text" id="order_id" name="order_id" value="" /></p>
-  <p><input type="button" id="button01" name="button01" value="キャンセルする" /></p>
-</form>
+  <h1>カートの中身</h1>
+  <ul>
+    <li><a href="index.php">【←】商品ページに戻る</a></li>
+    <li><a href="purchase.php">【→】購入画面に進む</a></li>
+  </ul>
 
-<?php
-/*
-foreach ($_SESSION['order'] as $index => $order) {
-if ($order['order_id'] = $_POST['order_id']) {
-  print_r($_SESSION['order'][$index]);
- }
-}
-*/
-?>
+  <br> 
 
-	<h1>カートの中身</h1>
-	<ul>
-		<li><a href="index.php">【←】商品ページに戻る</a></li>
-		<li><a href="purchase.php">【→】購入画面に進む</a></li>
-	</ul>
 
-	<br>
-
-	<?php
+  <?php 
 session_start();
 $connect = mysql_connect("localhost","root","");
 $db = "musubi";
@@ -55,7 +41,7 @@ while(true){
  
        }
 } 
-   print_r($items);
+ //  print_r($items);
 //ここからお米のデータベース情報をデータベースから取る
 $i = 1;
 $result2=mysql_db_query("musubi","SELECT * from rices");
@@ -89,35 +75,42 @@ while(true){
     
     }
 }
-$mail_sums= "";
 
+      echo "ーーーーーーーーーーーーーーーーーーーーーーー";
 
-			echo "<p>カートの中身<p><br>";
-			echo "<pre>";
-			foreach ($_SESSION["order"] as $orders) {
-				echo $orders['具']; 
-				echo "注文".$i."<br>" ;
-				//$order_id = $orders['注文番号'];
-				//echo "注文".$order_id." / " ;
-				$gu =  $orders['具'];
-				echo $items[$gu]['item_name']." / ";
-				$kome =  $orders['米'];
-				echo $rices[$kome]['rice_name']." / ";
-				$nori =  $orders['海苔'];
-				echo $noris[$nori]['nori_name']." / ";
-				echo $orders['数']."個"."           ";
-				$price = $orders['合計'];
-				echo "金額".$price*$orders['数']."円"."<br>";
-         $mail_sum = $price*$orders['数'];
-				echo "--------------------------------------------------------------------------";
-				echo "<br>"."<br>";
-        $mail_sums += $mail_sum;
-          
-			}
-			echo "</pre>";
+  foreach ($_SESSION['order'] as $index => $order) {
+ if ($order['注文番号'] == @$_POST['order_id']) {
+  unset($_SESSION['order'][$index]);
+ }
+}
+      echo "<pre>";
+      foreach ($_SESSION["order"] as $orders) {
+        $order_id = $orders['注文番号'];
+        echo "注文".$order_id."：" ;
+        $gu =  $orders['具'];
+        echo $items[$gu]['item_name']." / ";
+        $kome =  $orders['米'];
+        echo $rices[$kome]['rice_name']." / ";
+        $nori =  $orders['海苔'];
+        echo $noris[$nori]['nori_name']." / ";
+        echo $orders['数']."個"."           ";
+        $price = $orders['合計'];
+        echo "金額".$price*$orders['数']."円"."　";
+                 $mail_sum = $price*$orders['数'];
+  ?>
+        <form action="cart.php" method="post">
+        <input type=hidden value="<?php echo $orders['注文番号']; ?>" name="order_id">
+        <input type ='submit' class='btn btn-primary' value = 'キャンセル'>
+        </form>
+  <?php
+        echo "ーーーーーーーーーーーーーーーーーーーーーーーーーーー";
+        echo "<br>"."<br>";
+                 $mail_sums += $mail_sum;
+      }
+      echo "</pre>";
 
-      ?>
-    <p>合計金額：<?php echo $mail_sums ?>円</p><br>
+  ?>
+       <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 </body>
 
 </html>
