@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<meta content="text/html" charset="UTF-8">
+  <meta content="text/html" charset="UTF-8">
 </head>
 
 <body>
@@ -9,16 +9,16 @@
 <!--キャンセルのフォーム-->
 
 
-	<h1>カートの中身</h1>
-	<ul>
-		<li><a href="index.php">【←】商品ページに戻る</a></li>
-		<li><a href="purchase.php">【→】購入画面に進む</a></li>
-	</ul>
+  <h1>カートの中身</h1>
+  <ul>
+    <li><a href="index.php">【←】商品ページに戻る</a></li>
+    <li><a href="purchase.php">【→】購入画面に進む</a></li>
+  </ul>
 
-	<br> 
+  <br> 
 
 
-	<?php 
+  <?php 
 session_start();
 $connect = mysql_connect("localhost","root","");
 $db = "musubi";
@@ -77,37 +77,42 @@ while(true){
 }
 
       echo "ーーーーーーーーーーーーーーーーーーーーーーー";
-
+ $mail_sums ="";
   foreach ($_SESSION['order'] as $index => $order) {
  if ($order['注文番号'] == @$_POST['order_id']) {
   unset($_SESSION['order'][$index]);
  }
 }
-			echo "<pre>";
-			foreach ($_SESSION["order"] as $orders) {
-				$order_id = $orders['注文番号'];
-				echo "注文".$order_id."：" ;
-				$gu =  $orders['具'];
-				echo $items[$gu]['item_name']." / ";
-				$kome =  $orders['米'];
-				echo $rices[$kome]['rice_name']." / ";
-				$nori =  $orders['海苔'];
-				echo $noris[$nori]['nori_name']." / ";
-				echo $orders['数']."個"."           ";
-				$price = $orders['合計'];
-				echo "金額".$price*$orders['数']."円"."　";
+      echo "<pre>";
+      foreach ($_SESSION["order"] as $orders) {
+        $order_id = $orders['注文番号'];
+        echo "注文".$order_id."：" ;
+        $gu =  $orders['具'];
+        echo $items[$gu]['item_name']." / ";
+        $kome =  $orders['米'];
+        echo $rices[$kome]['rice_name']." / ";
+        $nori =  $orders['海苔'];
+        echo $noris[$nori]['nori_name']." / ";
+        echo $orders['数']."個"."           ";
+        $price = $orders['合計'];
+        echo "金額".$price*$orders['数']."円"."　";
+                 $mail_sum = $price*$orders['数'];
   ?>
         <form action="cart.php" method="post">
         <input type=hidden value="<?php echo $orders['注文番号']; ?>" name="order_id">
         <input type ='submit' class='btn btn-primary' value = 'キャンセル'>
         </form>
   <?php
-				echo "ーーーーーーーーーーーーーーーーーーーーーーーーーーー";
-				echo "<br>"."<br>";
-			}
-			echo "</pre>";
+        echo "ーーーーーーーーーーーーーーーーーーーーーーーーーーー";
+        echo "<br>"."<br>";
+        $mail_sums += $mail_sum;
+      }
+      echo "</pre>";
 
-	?>
+  ?>
+
+  <p>合計金額：<?php echo $mail_sums ?>円</p><br>
+
 </body>
 
 </html>

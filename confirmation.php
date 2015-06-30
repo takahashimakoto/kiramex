@@ -1,9 +1,11 @@
 <?php
 $name = "";
 $address = "";
+$phone = "";
 $mailaddress = "";
 $name = $_POST['name'];
 $address = $_POST['address'];
+$phone = $_POST['phone'];
 $mailaddress = $_POST['mailaddress'];
 
 //echo $name."<br>";
@@ -101,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'card' => $webpay_token
   ));
   }
-
 }
 
 
@@ -123,9 +124,26 @@ if(!empty($amount) && !empty($webpay_token)){
   //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
   //$mail->Port = 587;                                    // TCP port to connect to
 
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //$mailaddress = "";
+    //$name = "";
+
+    if(isset($_POST['mailaddress'])) {
+      $mailaddress = $_POST['mailaddress'];
+    }
+    if(isset($_POST['name'])) {
+      $name = $_POST['name'];
+    }
+
+    if(!empty($mailaddress) && !empty($name)){
+      $mail->addAddress($mailaddress, $name);     // Add a recipient
+    }
+  }
+
+//  $mail->addAddress($mailaddress, $name);
   $mail->From = 'musubi151515@gmail.com';
   $mail->FromName = 'musubi-staff';
-  $mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipient
+//  $mail->addAddress('musubi151515@gmail.com', 'musubi-staff');     // Add a recipient
   //$mail->addAddress('ellen@example.com');               // Name is optional
   //$mail->addReplyTo('musubi151515@gmail.com', 'Information');
   //$mail->addCC('cc@example.com');
@@ -160,6 +178,8 @@ if(!empty($amount) && !empty($webpay_token)){
 [ご住所]
  $address
  〒113-0034 東京都文京区湯島1-6-3湯島1丁目ビル7F
+[電話番号]
+ $phone
 [ご予約者]
  $name
  株式会社シー・コネクト　加藤竜也　様
@@ -231,8 +251,9 @@ EOM;
   //$mail->AltBody = $mailbody;
 
   if(!$mail->send()) {
-    header('location: confrimation.php');
-    exit();
+    echo("メール送信できませんでした。エラー：".$mail->ErrorInfo);
+    //header('location: confirmation.php');
+    //exit();
   } else {
     header('location: completion.php');
     exit();
@@ -296,7 +317,7 @@ EOM;
       //echo $mail_sums;
 ?>
 
-<!--<?php echo $mailbody; ?>-->
+<?php //echo $mailbody; ?>
 
   <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 
@@ -304,6 +325,10 @@ EOM;
     <input type='hidden' name='amount' value="<?php echo $mail_sums ?>">
     <input type='hidden' name='ordermails' value="<?php echo $ordermails ?>">
     <input type='hidden' name='mail_sums' value="<?php echo $mail_sums ?>">
+    <input type='hidden' name='name' value="<?php echo $name ?>">
+    <input type='hidden' name='address' value="<?php echo $address ?>">
+    <input type='hidden' name='phone' value="<?php echo $phone ?>">
+    <input type='hidden' name='mailaddress' value="<?php echo $mailaddress ?>">
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
   </form>
 </body>
