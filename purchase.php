@@ -131,72 +131,77 @@ while(true){
              <p>合計金額：<?php echo $mail_sums ?>円</p><br>
 
               <form name="NEXT" method="POST" action="confirmation.php" novalidate="novalidate">
-                <input type="hidden" name="KAGOID" value="7c38b02d2268c6a3a9392615825c2ece">
-                <input type="hidden" name="CMD" value="ENQUETE">
+
+
                                 <!-- 購入者情報　ここから //-->
                 <br>
                 <div style="width:95%;">
                   <h4 style="display:inline;">▼ 購入者情報</h4>
                 <div class="bordlayoutp3 center">
                   <table width="95%" border="0" cellspacing="0" cellpadding="0">
-                    
-                    
-
-                    
-                                          <tbody><tr align="center">
-                        <td align="left" class="backcolor1">                           お名前
-                        &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
-                          <td align="left" class="backcolor2">
-                            <div>
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
-                            </div>
-                          </td>
-                      </tr>
-                                           
-                    
-                                          <!-- ご住所 //-->
-                      
+                    <tbody>
                       <tr align="center">
-                        <td align="left" class="backcolor1">                           ご住所
-                          &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
+                        <td align="left" class="backcolor1">
+                          お名前&nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span>
+                        </td>
+                        <td align="left" class="backcolor2">
+                          <div>
+                            <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label>
+                            <input type="text" name="name" value="" placeholder="尾握 結">
+                          </div>
+                      　　</td>
+                      </tr>
+
+                 　    <tr align="center">
+                        <td align="left" class="backcolor1">
+                          ご住所&nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span>
+                        </td>
+                        <td align="left" class="backcolor2">
+                          <div>
+                            <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label>
+                           <input type="text" name="address" value="" placeholder="〒100-0001 東京都千代田区千代田1-1-1 MUSUBI.bldg.">
+                          </div>
+                        </td>
+                      </tr>
+                    
+                      <tr align="center">
+                        <td align="left" class="backcolor1">
+                          お電話番号&nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span>
+                        </td>
                           <td align="left" class="backcolor2">
                             <div>
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
+                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label>
+                             <input type="text" name="phone" value="" placeholder="電話番号">
                             </div>
                           </td>
                       </tr>
-                      
                     
-                                          <tr align="center">
-                        <td align="left" class="backcolor1">                           お電話番号
-                          &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
-                          <td align="left" class="backcolor2">
-                            <div>
-                              <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）新宿区</label><input type="text" class="validate required" style="width:220px;height:17px;;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: active;" name="address" maxlength="64" value="" bind-placeholder-label="true">
-                            </div>
-                          </td>
-                      </tr>
-                    
-                                        <tr align="center">
-                      <td align="left" class="backcolor1">                         メールアドレス
-                        &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
-                      <td align="left" class="backcolor2">
-                        <div>
-                          <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）yamada@example.co.jp</label><input type="text" class="validate email required" style="width:177px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: inactive;" name="MAIL" maxlength="80" size="30" value="" onkeyup="checkEmailInput(this)" bind-placeholder-label="true">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr align="center">
-                      <td align="left" class="backcolor1">                         メールアドレス(確認)
-                        &nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span> </td>
-                      <td align="left" class="backcolor2">
-                        <span style="font-size: 89%">※注文確認メールを確実にお届けするため、メールアドレスを正確にご記入ください。</span><br>
-                        <div>
-                          <label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）yamada@example.co.jp</label><input type="text" class="validate required email" style="width:177px;height:17px;padding-left:7px;padding-top:2px;margin:10px 0;ime-mode: inactive;" name="MAIL_CONF" maxlength="80" value="" onkeyup="checkEmailInput(this)" bind-placeholder-label="true">
-                        </div>
-                      </td>
-                    </tr>
-                                    </tbody></table>
+                      <tr align="center">
+                      　　<td align="left" class="backcolor1">
+                      メールアドレス&nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span>
+                      　　</td>
+                      　　<td align="left" class="backcolor2">
+                        　　<div>
+                          　　<label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）yamada@example.co.jp</label>
+                          　<input type="text" name="mailaddress" value="" placeholder="メールアドレス">
+                        　　</div>
+                      　　</td>
+                    　　</tr>
+                      　　　　　　　　　　　　
+                    　　<tr align="center">
+                      　　<td align="left" class="backcolor1">
+                          メールアドレス(確認)&nbsp;<span style="color: #FF0000; font-size: 80%;">必須</span>
+                        </td>
+                      　　<td align="left" class="backcolor2">
+                        　　<span style="font-size: 89%">※注文確認メールを確実にお届けするため、メールアドレスを正確にご記入ください。</span><br>
+                        　　<div>
+                          　　<label style="font-family: 'ＭＳ Ｐゴシック', Osaka, monospace; position: absolute; cursor: initial; color: rgb(137, 137, 137); display: none; margin-left: 2px; padding-left: 5px; padding-right: 5px; margin-top: -2.94444433848063px; font-size: 13.3333330154419px; background-color: rgb(255, 255, 255);">例）yamada@example.co.jp</label>
+                          　　<input type="text" name="mailaddresscheck" value="" placeholder="メールアドレス（確認）">
+                        　　</div>
+                      　　</td>
+                   　　 </tr>
+                  　　</tbody>
+                　　</table>
                 </div>
                 <!-- 購入者情報　ここまで //-->
                 <br>
@@ -205,6 +210,10 @@ while(true){
                   <!-- 次へボタン　ここから //-->
                                                             
                                                         </div>
+
+  　　　　　　　　　　　　<br><br><br>
+  　　　　　　　　　　　　
+  　　　　　　　　　　　　
              
                   
 　　　　　　　　　　
