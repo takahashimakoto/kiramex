@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 session_start();
@@ -12,13 +13,12 @@ if(isset($_SESSION["order"])) {
             '米' => @$_POST['rice'],
             '海苔' => @$_POST['nori'],
             '数' => @$_POST['num'],
-            '合計' => @$_POST['price'],
-            '注文番号' => @$_POST['order_id']
+            '合計' => @$_POST['price']
         );
 }
 }
 
-print_r ($_SESSION["order"]);
+
 /*
 echo "<pre>";
 print_r($_SESSION["order"]);
@@ -168,17 +168,16 @@ while(true) {
         <!-- Page Features -->
                     <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
         <div class="row text-center">
-			<?php foreach($items as $item ) {  $j = 0; $j++ ?>
+			<?php foreach($items as $item ) { ?>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
 						<img src="<?php echo $item['image']; ?>" alt="">
 						<div class="caption">
-
                         <p>料金:<?php echo $item['price']; ?></p>
 
 							<h3><?php echo $item['item_name']; ?></h3>
 							<form action="index.php" method="post">
-                            <input type="hidden" name = "order_id" value = "<?php $j ?>" > 
+
 							<input type="hidden" name="item" value="<?php echo $item['item_id'] ?>" >
                             <input type="hidden" name="price" value ="<?php echo $item['price'] ?>" >
 
