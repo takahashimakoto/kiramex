@@ -9,9 +9,6 @@ if (isset($_SESSION["order_id"]) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-echo "注文番号".$_SESSION["order_id"];
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 session_start();
@@ -47,14 +44,13 @@ mysql_query("SET NAMES utf8",$connect);
 //ここでおにぎりのデータベース情報をデータベースから取る
 $result1 = mysql_db_query("musubi","SELECT * from items");
 $i = 1;
-var_dump($result1);
 while(true) {
       $kekka1 = mysql_fetch_assoc($result1);
       if($kekka1 == null) {
         break;
       } else {
         $i++;
-        print_r($kekka1);
+        
            echo"<br>";
             $items[] = $kekka1;
           //  echo"<br>";
@@ -119,7 +115,12 @@ while(true) {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    p.price{font-size: 22px;
 
+    }
+
+    </style>
 </head>
 
 <body>
@@ -162,7 +163,8 @@ while(true) {
     <div class="container">
 
         <!-- Jumbotron Header -->
-        <header class="jumbotron hero-spacer">
+        <header class="jumbotron hero-spacer" >
+
             <h1>MUSUBI</h1>
             <p>お米と具材にこだわった、手作りおにぎりのお店です。</p>
             <p><a class="btn btn-primary btn-large">Call to action!</a></p>
@@ -186,11 +188,11 @@ while(true) {
 
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="<?php echo $item['image']; ?>" alt="">
+						<img src="<?php echo $item['image']; ?>" alt="<?php echo $item['item_name']; ?>">
 						<div class="caption">
-                        <p>料金:<?php echo $item['price']; ?></p>
-                            <?php echo $j ; ?>
-							<h3><?php echo $item['item_name']; ?></h3>
+                        <p class = 'price'>料金:<?php echo $item['price']; ?></p>
+                          
+						<?php // echo $item['item_name']; ?>
 							<form action="index.php" method="post">
 
                             <input type="hidden" name = "order_id" value = "<?php echo $j ; ?>" > 
