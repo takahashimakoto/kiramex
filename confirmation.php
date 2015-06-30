@@ -341,10 +341,14 @@ mysql_db_query($db, $sqli);
     <input type='hidden' name='amount' value="<?php echo $mail_sums ?>">
     <input type='hidden' name='ordermails' value="<?php echo $ordermails ?>">
     <input type='hidden' name='mail_sums' value="<?php echo $mail_sums ?>">
-    <input type='hidden' name='name' value="<?php echo $name ?>">
-    <input type='hidden' name='address' value="<?php echo $address ?>">
-    <input type='hidden' name='phone' value="<?php echo $phone ?>">
-    <input type='hidden' name='mailaddress' value="<?php echo $mailaddress ?>">
+    名前：<?php echo $name ?><br>
+      <input type='hidden' name='name' value="<?php echo $name ?>">
+    住所：<?php echo $address ?><br>
+      <input type='hidden' name='address' value="<?php echo $address ?>">
+    電話番号：<?php echo $phone ?><br>
+      <input type='hidden' name='phone' value="<?php echo $phone ?>">
+    メールアドレス：<?php echo $mailaddress ?><br><br>
+      <input type='hidden' name='mailaddress' value="<?php echo $mailaddress ?>">
     <script src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="test_public_ccOfYo3DJ4lH9bObjBefN56v" data-submit-text="注文を確定する" data-lang="ja"></script>
   </form>
 
