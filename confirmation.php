@@ -16,7 +16,7 @@ $mailaddress = $_POST['mailaddress'];
 
 //// curt check start
 session_start();
-$connect = mysql_connect("localhost","root","");
+$connect = mysql_connect("localhost","root","root");
 $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
@@ -271,14 +271,11 @@ EOM;
 
 ?>
 
-<!doctype html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-</head>
+<?php include "head.php"; ?>
 
 <body>
+  <!-- Navigation -->
+  <?php include "hedder.php"; ?>
 
   <h1>確認画面</h1>
   <ul>

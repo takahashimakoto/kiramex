@@ -1,26 +1,6 @@
-<html>
-
-<head>
-  <meta content="text/html" charset="UTF-8">
-</head>
-
-<body>
-
-<!--キャンセルのフォーム-->
-
-
-  <h1>カートの中身</h1>
-  <ul>
-    <li><a href="index.php">【←】商品ページに戻る</a></li>
-    <li><a href="purchase.php">【→】購入画面に進む</a></li>
-  </ul>
-
-  <br> 
-
-
-  <?php 
+<?php 
 session_start();
-$connect = mysql_connect("localhost","root","");
+$connect = mysql_connect("localhost","root","root");
 $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
@@ -75,14 +55,32 @@ while(true){
     
     }
 }
+?>
 
-      echo "ーーーーーーーーーーーーーーーーーーーーーーー";
- $mail_sums ="";
+<?php include "head.php"; ?>
+
+<body>
+  <!-- Navigation -->
+  <?php include "hedder.php"; ?>
+
+  <h1>カートの中身</h1>
+  <ul>
+    <li><a href="index.php">【←】商品ページに戻る</a></li>
+    <li><a href="purchase.php">【→】購入画面に進む</a></li>
+  </ul>
+
+  <br> 
+
+
+<?php
+
+  echo "ーーーーーーーーーーーーーーーーーーーーーーー";
+  $mail_sums ="";
   foreach ($_SESSION['order'] as $index => $order) {
- if ($order['注文番号'] == @$_POST['order_id']) {
-  unset($_SESSION['order'][$index]);
- }
-}
+    if ($order['注文番号'] == @$_POST['order_id']) {
+      unset($_SESSION['order'][$index]);
+    }
+  }
       echo "<pre>";
       foreach ($_SESSION["order"] as $orders) {
         $order_id = $orders['注文番号'];

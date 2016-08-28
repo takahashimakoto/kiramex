@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$connect = mysql_connect("localhost","root","");
+$connect = mysql_connect("localhost","root","root");
 $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
@@ -59,24 +59,17 @@ while(true){
 ?>
 
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta content="text/html" charset="UTF-8">
-</head>
+<?php include "head.php"; ?>
 
 <body>
-<h1>購入画面</h1>
-<ul>
+  <!-- Navigation -->
+  <?php include "hedder.php"; ?>
+
+  <h1>購入画面</h1>
+  <ul>
     <li><a href="cart.php">【←】カートの中身に戻る</a></li>
-    <li><a href="confirmation.php">【→】確認画面に進む</a></li>
-</ul>
-
-
-<link rel="stylesheet" href="https://cart2.shopserve.jp/css/placeholder.css" type="text/css">
-
-
+    <li><a href="confirmation.php">【→】確認画面に進む</a></li> 
+  </ul>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <tbody><tr>
