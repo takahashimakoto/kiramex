@@ -19,7 +19,7 @@
 
     <?php 
 session_start();
-$connect = mysql_connect("localhost","root","");
+$connect = mysql_connect("localhost","root","root");
 $db = "musubi";
 //SQLをUTF8形式で書くよ、という意味
 mysql_query("SET NAMES utf8",$connect);
